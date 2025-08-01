@@ -1,0 +1,33 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    [SerializeField] private float _vertcalSpeed;
+    [SerializeField] private float _rotateSpeed;
+    
+    private Rigidbody2D _rigidbody2D;
+
+    private void Start()
+    {
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            _rigidbody2D.AddForce(transform.up * _vertcalSpeed);
+        }
+        
+        float rotateInput = 0f;
+        if (Input.GetKey(KeyCode.A))
+            rotateInput = 1f;
+        else if (Input.GetKey(KeyCode.D))
+            rotateInput = -1f;
+
+        _rigidbody2D.MoveRotation(_rigidbody2D.rotation + rotateInput * _rotateSpeed * Time.fixedDeltaTime);
+    }
+}
