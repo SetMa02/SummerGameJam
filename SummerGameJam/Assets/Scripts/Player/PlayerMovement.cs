@@ -9,10 +9,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _rotateSpeed;
     
     private Rigidbody2D _rigidbody2D;
+    private Animator _animator;
+    
+    private string Flying = "Flying";
+    private string Win = "Win";
+    private string Broken = "Broken";
 
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -20,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             _rigidbody2D.AddForce(transform.up * _vertcalSpeed);
+            _animator.SetTrigger(Flying);
         }
         
         float rotateInput = 0f;
