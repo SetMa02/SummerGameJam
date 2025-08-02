@@ -12,6 +12,11 @@ public class IsPaused : MonoBehaviour
         isPaused = false;
     }
 
+    public bool GetPauseSatatus()
+    {
+        return isPaused;
+    }
+    
     public void SetPaused()
     {
         isPaused = true;

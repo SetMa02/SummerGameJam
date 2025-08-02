@@ -16,7 +16,7 @@ public class PauseGameButton : MonoBehaviour
 
     private void PauseManager()
     {
-        if (_isPaused == false)
+        if (_isPaused.GetPauseSatatus() == false)
         {
             Time.timeScale = 0f;
             _isPaused.SetPaused();
