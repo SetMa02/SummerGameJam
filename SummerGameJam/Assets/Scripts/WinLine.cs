@@ -22,6 +22,10 @@ public class WinLine : MonoBehaviour
     [Header("Менеджер денег")]
     [SerializeField] private Player _player;
 
+    [Header("Звук победы")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _winSound;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Box box))
@@ -29,6 +33,10 @@ public class WinLine : MonoBehaviour
             levelTimer.StopTimer();
             Time.timeScale = 0f;
             winMenu.SetActive(true);
+
+            // Проигрываем победный звук
+            if (_audioSource != null && _winSound != null)
+                _audioSource.PlayOneShot(_winSound);
 
             float _finalTime = levelTimer.GetTime();
             int _stars = 1;
