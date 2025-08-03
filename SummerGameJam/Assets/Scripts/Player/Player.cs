@@ -1,18 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private TextMeshProUGUI _moneyText;
+
+    [Header("Начальное количество денег")]
+    [SerializeField] private float _money;
+
+    public float Money => _money;
+
+    private void Start()
     {
-        
+        UpdateUI();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddMoney(float amount)
     {
-        
+        _money += amount;
+        UpdateUI();
+        Debug.Log($"+{amount}$ → {_money}$");
+    }
+
+    public void SubtractMoney(float amount)
+    {
+        _money -= amount;
+        UpdateUI();
+        Debug.Log($"-{amount}$ → {_money}$");
+    }
+
+    private void UpdateUI()
+    {
+        _moneyText.text = $"{_money:0000}$";
     }
 }

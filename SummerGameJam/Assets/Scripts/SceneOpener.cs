@@ -9,6 +9,7 @@ public class SceneOpener : MonoBehaviour
 
     public void OpenTargetScene()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(_targetScene);
     }
 }
