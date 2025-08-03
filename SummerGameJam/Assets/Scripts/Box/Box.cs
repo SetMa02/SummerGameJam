@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject _wastePanel;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.TryGetComponent(out Obstacle obstacle))
+        {
+            _wastePanel.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
     }
 }
